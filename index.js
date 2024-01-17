@@ -1,9 +1,13 @@
 const express = require('express');
+const { dbConnection } = require('./database/config');
 
 require('dotenv').config();
 
-
 const app = express();
+
+//Base de datos
+dbConnection();
+
 
 app.use(express.json());
 
