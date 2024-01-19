@@ -16,6 +16,8 @@ app.use(express.json());
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/maquinas', require('./routes/maquinas'));
+app.use('/api/fabricantes', require('./routes/fabricantes'));
+app.use('/api/operadores', require('./routes/operadores'));
 
 
 app.listen(process.env.PORT, () => {

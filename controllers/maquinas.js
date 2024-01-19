@@ -71,11 +71,6 @@ const actualizarMaquina = async (req, res = response) => {
             msg: 'Por favor hable con el administrador'
         });
     }
-
-    res.json({
-        ok: true,
-        maquinaId
-    });
 }
 
 const eliminarMaquina = async (req, res = response) => {
@@ -103,11 +98,6 @@ const eliminarMaquina = async (req, res = response) => {
             msg: 'Por favor hable con el administrador'
         });
     }
-
-    res.json({
-        ok: true,
-        maquinaId
-    });
 }
 
 module.exports = {
