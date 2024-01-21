@@ -1,12 +1,12 @@
 const { Schema, model } = require('mongoose');
 
 const ProductoSchema = Schema({
-    op: {
+    op: [{
         type: String,
-    },
-    np: {
+    }],
+    np: [{
         type: String
-    },
+    }],
     tipoMaterial: {
         type: String
     },

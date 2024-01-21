@@ -1,21 +1,12 @@
 const { Schema, model } = require('mongoose');
 
-const ExtrusionSchema = Schema({
+const ImpresionSchema = Schema({
     fecha: {
         type: new Date(),
     },
     turno: {
         type: String,
         enum: ['Dia', 'Noche']
-    },
-    kilosExtruidos: {
-        type: Number
-    },
-    scrap: {
-        type: Number
-    },
-    refill: {
-        type: Number
     },
     maquina: {
         type: Schema.Types.ObjectId,
@@ -29,7 +20,16 @@ const ExtrusionSchema = Schema({
     operador: [{
         type: Schema.Types.ObjectId,
         ref: 'Operador'
-    }]
+    }],
+    kgsEntrada: {
+        type: Number
+    },
+    kgsSalida: {
+        type: Number
+    },
+    scrap: {
+        type: Number
+    }
 });
 
-module.exports = model('Extrusion', ExtrusionSchema);
+module.exports = model('Impresion', ImpresionSchema);
