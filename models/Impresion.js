@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const ImpresionSchema = Schema({
     fecha: {
-        type: new Date(),
+        type: Date
     },
     turno: {
         type: String,
@@ -29,6 +29,11 @@ const ImpresionSchema = Schema({
     },
     scrap: {
         type: Number
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 

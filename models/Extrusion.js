@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const ExtrusionSchema = Schema({
     fecha: {
-        type: new Date(),
+        type: Date
     },
     turno: {
         type: String,
@@ -19,8 +19,7 @@ const ExtrusionSchema = Schema({
     },
     maquina: {
         type: Schema.Types.ObjectId,
-        ref: 'Maquina',
-
+        ref: 'Maquina'
     },
     producto: {
         type: Schema.Types.ObjectId,
@@ -29,7 +28,20 @@ const ExtrusionSchema = Schema({
     operador: [{
         type: Schema.Types.ObjectId,
         ref: 'Operador'
-    }]
+    }],
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
+});
+
+ExtrusionSchema.set('toJSON', {
+    transform: (document, returnedObject) => {
+        returnedObject.id = returnedObject._id.toString();
+        delete returnedObject._id;
+        delete returnedObject.__v;
+    }
 });
 
 module.exports = model('Extrusion', ExtrusionSchema);

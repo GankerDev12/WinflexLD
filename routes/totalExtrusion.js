@@ -6,28 +6,28 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar_campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
-const { getProductos, crearProducto, actualizarProducto, eliminarProducto } = require('../controllers/productos');
+const { getTotalExtrusiones, crearTotalExtrusion, actualizarTotalExtrusion, eliminarTotalExtrusion } = require('../controllers/totalExtrusion');
 
 const router = Router();
 
 //En todas las peticiones se valida el JWT
 router.use(validarJWT);
 
-// Listado de productos
-router.get('/', getProductos);
+// Listado de totales extrusiones
+router.get('/', getTotalExtrusiones);
 
-// Crear un nuevo producto
+// Crear un nuevo total de extrusion
 router.post('/',
     [
         check('descripcion', 'La descripción es obligatorio').not().isEmpty(),
         validarCampos
     ],
-    crearProducto);
+    crearTotalExtrusion);
 
-// Actualizar producto
-router.put('/:id', actualizarProducto);
+// Actualizar un total de extrusion
+router.put('/:id', actualizarTotalExtrusion);
 
-// Borrar producto
-router.delete('/:id', eliminarProducto);
+// Borrar total extrusion
+router.delete('/:id', eliminarTotalExtrusion);
 
 module.exports = router;

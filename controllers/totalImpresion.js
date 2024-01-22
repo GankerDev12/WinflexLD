@@ -1,35 +1,25 @@
 const { response } = require('express');
-const Producto = require('../models/Producto');
+const TotalImpresion = require('../models/TotalImpresion');
 
-const getProductos = async (req, res = response) => {
-    const productos = await Producto.find()
+const getTotalImpresiones = async (req, res = response) => {
+    const totalImpresiones = await TotalImpresion.find()
         .populate('user', ' name');
 
     res.json({
         ok: true,
-        productos
+        totalImpresiones
     });
 }
 
-const crearProducto = async (req, res = response) => {
-    const producto = new Producto(req.body);
+const crearTotalImpresion = async (req, res = response) => {
+    const totalImpresion = new TotalImpresion(req.body);
+    totalImpresion.user = req.uid;
 
     try {
-        let productob = await Producto.findOne({ op: producto.op, np: producto.np });
-        if (productob) {
-            return res.status(400).json({
-                ok: false,
-                msg: 'Este producto ya esta creado'
-            })
-        }
-
-        producto.user = req.uid;
-
-        const productoGuardado = await producto.save();
-
+        const totalImpresionGuardada = await TotalImpresion.save();
         res.json({
             ok: true,
-            producto: productoGuardado
+            totalImpresion: totalImpresionGuardada
         });
 
     } catch (error) {
@@ -41,7 +31,7 @@ const crearProducto = async (req, res = response) => {
     }
 }
 
-const actualizarProducto = async (req, res = response) => {
+const actualizarTotalImpresion = async (req, res = response) => {
     const productoId = req.params.id;
     const uid = req.uid;
 
@@ -73,7 +63,7 @@ const actualizarProducto = async (req, res = response) => {
     }
 }
 
-const eliminarProducto = async (req, res = response) => {
+const eliminarTotalImpresion = async (req, res = response) => {
     const productoId = req.params.id;
     const uid = req.uid;
 
@@ -101,8 +91,8 @@ const eliminarProducto = async (req, res = response) => {
 }
 
 module.exports = {
-    getProductos,
-    crearProducto,
-    actualizarProducto,
-    eliminarProducto
+    getTotalImpresiones,
+    crearTotalImpresion,
+    actualizarTotalImpresion,
+    eliminarTotalImpresion
 }

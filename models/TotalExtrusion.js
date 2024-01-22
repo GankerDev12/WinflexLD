@@ -22,6 +22,11 @@ const TotalExtrusionSchema = Schema({
     },
     estadoOP: {
         type: String
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 

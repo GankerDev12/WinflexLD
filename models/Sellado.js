@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const SelladoSchema = Schema({
     fecha: {
-        type: new Date(),
+        type: Date
     },
     maquina: {
         type: Schema.Types.ObjectId,
@@ -37,6 +37,11 @@ const SelladoSchema = Schema({
     },
     porcentajeScrap: {
         type: Number
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 

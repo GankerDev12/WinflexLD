@@ -26,6 +26,11 @@ const ProductoSchema = Schema({
     fabricante: {
         type: Schema.Types.ObjectId,
         ref: 'Fabricante'
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 

@@ -22,6 +22,11 @@ const TotalExtrusionSchema = Schema({
     },
     totalPorcentajeScrap: {
         type: Number
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 
