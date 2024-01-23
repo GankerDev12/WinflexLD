@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const TotalExtrusionSchema = Schema({
+const TotalSelladoSchema = Schema({
     producto: {
         type: Schema.Types.ObjectId,
         ref: 'Producto'
@@ -30,4 +30,4 @@ const TotalExtrusionSchema = Schema({
     }
 });
 
-module.exports = model('TotalExtrusion', TotalExtrusionSchema);
+module.exports = model('TotalSellado', TotalSelladoSchema);

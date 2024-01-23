@@ -1,12 +1,12 @@
 /*
 Rutas de Productos
-host + /api/totalimpresiones
+host + /api/totalSellados
 */
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar_campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
-const { getTotalImpresiones, crearTotalImpresion, actualizarTotalImpresion, eliminarTotalImpresion } = require('../controllers/totalImpresion');
+const { getTotalSellado, crearTotalSellado, actualizarTotalSellado, eliminarTotalSellado } = require('../controllers/totalSellado');
 
 const router = Router();
 
@@ -14,7 +14,7 @@ const router = Router();
 router.use(validarJWT);
 
 // Listado de totales de impresiones
-router.get('/', getTotalImpresiones);
+router.get('/', getTotalSellado);
 
 // Crear un nuevo total de impresion
 router.post('/',
@@ -22,12 +22,12 @@ router.post('/',
         check('producto', 'El producto es obligatorio').not().isEmpty(),
         validarCampos
     ],
-    crearTotalImpresion);
+    crearTotalSellado);
 
 // Actualizar total impresion
-router.put('/:id', actualizarTotalImpresion);
+router.put('/:id', actualizarTotalSellado);
 
 // Borrar total impresion
-router.delete('/:id', eliminarTotalImpresion);
+router.delete('/:id', eliminarTotalSellado);
 
 module.exports = router;

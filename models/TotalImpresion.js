@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const TotalImpresion = Schema({
+const TotalImpresionSchema = Schema({
     producto: {
         type: Schema.Types.ObjectId,
         ref: 'Producto'
@@ -9,6 +9,9 @@ const TotalImpresion = Schema({
         type: Number
     },
     totalKgsSalida: {
+        type: Number
+    },
+    totalScrap: {
         type: Number
     },
     totalPorcentajeScrap: {

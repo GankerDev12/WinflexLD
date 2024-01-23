@@ -1,6 +1,6 @@
 /*
 Rutas de Productos
-host + /api/productos
+host + /api/totalextrusiones
 */
 const { Router } = require('express');
 const { check } = require('express-validator');

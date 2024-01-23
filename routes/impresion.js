@@ -1,34 +1,34 @@
 /*
 Rutas de Productos
-host + /api/productos
+host + /api/impresion
 */
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar_campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
-const { getExtrusiones, crearExtrusion, actualizarExtrusion, eliminarExtrusion } = require('../controllers/extrusion');
+const { getImpresiones, crearImpresion, actualizarImpresion, eliminarImpresion } = require('../controllers/impresion');
 
 const router = Router();
 
 //En todas las peticiones se valida el JWT
 router.use(validarJWT);
 
-// Listado de extrusiones
-router.get('/', getExtrusiones);
+// Listado de impresion
+router.get('/', getImpresiones);
 
-// Crear una nueva extrusion
+// Crear una nueva impresion
 router.post('/',
     [
         check('turno', 'El turno es obligatorio').not().isEmpty(),
         check('operador', 'El operador es obligatorio').not().isEmpty(),
         validarCampos
     ],
-    crearExtrusion);
+    crearImpresion);
 
-// Actualizar extrusion
-router.put('/:id', actualizarExtrusion);
+// Actualizar impresion
+router.put('/:id', actualizarImpresion);
 
-// Borrar extrusion
-router.delete('/:id', eliminarExtrusion);
+// Borrar impresion
+router.delete('/:id', eliminarImpresion);
 
 module.exports = router;

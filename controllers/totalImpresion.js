@@ -16,7 +16,7 @@ const crearTotalImpresion = async (req, res = response) => {
     totalImpresion.user = req.uid;
 
     try {
-        const totalImpresionGuardada = await TotalImpresion.save();
+        const totalImpresionGuardada = await totalImpresion.save();
         res.json({
             ok: true,
             totalImpresion: totalImpresionGuardada
@@ -32,26 +32,26 @@ const crearTotalImpresion = async (req, res = response) => {
 }
 
 const actualizarTotalImpresion = async (req, res = response) => {
-    const productoId = req.params.id;
+    const totalImpresionId = req.params.id;
     const uid = req.uid;
 
     try {
-        const producto = await Producto.findById(productoId);
-        if (!producto) {
+        const totalImpresion = await TotalImpresion.findById(totalImpresionId);
+        if (!totalImpresion) {
             return res.status(404).json({
                 ok: false,
-                msg: 'Producto no encontrado con ese id'
+                msg: 'Total impresion no encontrado con ese id'
             });
         }
-        const nuevoProducto = {
+        const nuevoTotalImpresion = {
             ...req.body,
             user: uid
         }
-        const productoActualizado = await Producto.findByIdAndUpdate(productoId, nuevoProducto)
+        const totalImpresionActualizado = await TotalImpresion.findByIdAndUpdate(totalImpresionId, nuevoTotalImpresion)
             .populate('user', 'name');
         res.json({
             ok: true,
-            producto: productoActualizado
+            totalImpresion: totalImpresionActualizado
         })
 
     } catch (error) {
@@ -64,21 +64,21 @@ const actualizarTotalImpresion = async (req, res = response) => {
 }
 
 const eliminarTotalImpresion = async (req, res = response) => {
-    const productoId = req.params.id;
+    const totalImpresionId = req.params.id;
     const uid = req.uid;
 
     try {
-        const producto = await Producto.findById(productoId);
-        if (!producto) {
+        const totalImpresion = await TotalImpresion.findById(totalImpresionId);
+        if (!totalImpresion) {
             return res.status(404).json({
                 ok: false,
-                msg: 'Producto no encontrado con ese id'
+                msg: 'Total impresion no encontrado con ese id'
             });
         }
-        await Producto.findByIdAndDelete(productoId)
+        await TotalImpresion.findByIdAndDelete(totalImpresionId)
 
         res.json({
-            ok: true,
+            ok: true
         })
 
     } catch (error) {
