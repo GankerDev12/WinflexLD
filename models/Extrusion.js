@@ -17,6 +17,9 @@ const ExtrusionSchema = Schema({
     refill: {
         type: Number
     },
+    observaciones: {
+        type: String
+    },
     maquina: {
         type: Schema.Types.ObjectId,
         ref: 'Maquina'

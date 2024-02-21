@@ -30,6 +30,9 @@ const ImpresionSchema = Schema({
     scrap: {
         type: Number
     },
+    observaciones: {
+        type: String
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
