@@ -1,12 +1,12 @@
 const { Schema, model } = require('mongoose');
 
 const ProductoSchema = Schema({
-    op: [{
+    op: {
         type: String,
-    }],
-    np: [{
+    },
+    np: {
         type: String
-    }],
+    },
     tipoMaterial: {
         type: String
     },
@@ -18,19 +18,27 @@ const ProductoSchema = Schema({
     },
     medidas: {
         type: String
-    }
-    ,
+    },
     kgSolicitados: {
         type: Number
     },
     fabricante: {
         type: Schema.Types.ObjectId,
-        ref: 'Fabricante'
+        ref: 'Fabricante',
+        required: true
     },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
+    }
+});
+
+ProductoSchema.set('toJSON', {
+    transform: (document, returnedObject) => {
+        returnedObject.id = returnedObject._id.toString();
+        delete returnedObject._id;
+        delete returnedObject.__v;
     }
 });
 

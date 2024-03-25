@@ -3,8 +3,8 @@ const Producto = require('../models/Producto');
 
 const getProductos = async (req, res = response) => {
     const productos = await Producto.find()
-        .populate('user', ' name');
-
+        .populate('fabricante', 'nombre')
+        .populate('user', 'name')
     res.json({
         ok: true,
         productos
